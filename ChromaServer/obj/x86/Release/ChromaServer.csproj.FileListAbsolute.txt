@@ -1,0 +1,100 @@
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\ChromaServer.exe.config
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.Form1.resources
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.Properties.Resources.resources
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.csproj.GenerateResource.Cache
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\testMode\bgtest.jpg
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Release\testMode\fgtest.png
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Release\ChromaServer.csprojResolveAssemblyReference.cache
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\ChromaServer.exe.config
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\testMode\bgtest.jpg
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\testMode\fgtest.png
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.csprojResolveAssemblyReference.cache
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.MainForm.resources
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.Properties.Resources.resources
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\obj\x86\Release\ChromaServer.csproj.GenerateResource.Cache
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\dppdll.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\DPPLibCom.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\DPPRSC.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\EDSDK.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\Dlls\edsimage.dll
+C:\Proyectos\SIAChromaServer\ChromaServerV2\ChromaServer\bin\Release\README.txt
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\ChromaServer.exe.config
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\dppdll.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\DPPLibCom.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\DPPRSC.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\EDSDK.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Dlls\edsimage.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\README.txt
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\testMode\bgtest.jpg
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\testMode\fgtest.png
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.csprojResolveAssemblyReference.cache
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.MainForm.resources
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.Properties.Resources.resources
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\obj\x86\Release\ChromaServer.csproj.GenerateResource.Cache
+C:\Proyectos\SIAChromaServer\ChromaServerCanon\ChromaServer\bin\Release\testMode\empty.png
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.exe.config
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\dppdll.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\DPPLibCom.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\DPPRSC.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\EDSDK.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\edsimage.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\README.txt
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\bgtest.jpg
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\empty.png
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\fgtest.png
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Canon.Eos.Framework.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.MainForm.resources
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.Properties.Resources.resources
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.csproj.GenerateResource.Cache
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.csprojResolveAssemblyReference.cache
+C:\Proyectos\SIAChromaServer\ChromaServerCanonV2\ChromaServer\bin\Release\app.config
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.exe.config
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.exe
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.pdb
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\Canon.Eos.Framework.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\Chromagic.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\dppdll.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\DPPLibCom.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\DPPRSC.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\EDSDK.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Dlls\edsimage.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\README.txt
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\bgtest.jpg
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\empty.png
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\testMode\fgtest.png
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\app.config
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.exe
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\ChromaServer.pdb
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Canon.Eos.Framework.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\bin\Release\Chromagic.dll
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.MainForm.resources
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.Properties.Resources.resources
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaServer.csproj.GenerateResource.Cache

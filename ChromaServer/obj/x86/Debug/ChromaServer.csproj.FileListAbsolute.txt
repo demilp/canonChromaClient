@@ -1,0 +1,9 @@
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Debug\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Debug\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Debug\ChromaServer.Properties.Resources.resources
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Debug\ChromaServer.csproj.GenerateResource.Cache
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Debug\ChromaServer.exe
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Debug\ChromaServer.pdb
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Debug\ChromaServer.exe.config
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\bin\Debug\Chromagic.dll
+C:\Proyectos\SIAChromaServer\ChromaServer\ChromaServer\obj\x86\Debug\ChromaServer.Form1.resources
