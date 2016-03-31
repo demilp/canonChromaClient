@@ -21,9 +21,6 @@ C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServ
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaClient.exe
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaClient.pdb
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\SIAChromaClient\ChromaServerCanonV2\ChromaServer\obj\x86\Release\ChromaClient.csprojResolveAssemblyReference.cache
-C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\ChromaClient.exe.config
-C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.exe
-C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.pdb
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\Dlls\Canon.Eos.Framework.dll
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\Dlls\Chromagic.dll
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\Dlls\dppdll.dll
@@ -36,11 +33,13 @@ C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaSe
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\testMode\empty.png
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\testMode\fgtest.png
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\app.config
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\ChromaClient.exe.config
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\ChromaClient.exe
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\ChromaClient.pdb
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\Canon.Eos.Framework.dll
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\bin\Release\Chromagic.dll
-C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.csprojResolveAssemblyReference.cache
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.MainForm.resources
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.Properties.Resources.resources
 C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.csproj.GenerateResource.Cache
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.exe
+C:\Users\Demian\Documents\Visual Studio 2015\Projects\ChromaClientCanon\ChromaServer\obj\x86\Release\ChromaClient.pdb

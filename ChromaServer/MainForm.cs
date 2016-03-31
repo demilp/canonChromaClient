@@ -16,6 +16,7 @@ using Canon.Eos.Framework.Eventing;
 using Canon.Eos.Framework;
 using System.Drawing.Text;
 using Bypass;
+using System.Drawing.Imaging;
 
 namespace ChromaClient
 {
@@ -51,7 +52,7 @@ namespace ChromaClient
 
         //Server
         private Bypass.BypassClient _server;
-        
+
         //Crop Image Config
         private Rectangle _rectCrop;
         private Bitmap _cropUserBitmap;
@@ -74,13 +75,15 @@ namespace ChromaClient
         private Bitmap _combinedConfigBitmap;
         private Bitmap _positionConfigBitmap;
         private Bitmap _backgroundConfigBitmap;
-        
+
         private Int32 _picX;
         private Int32 _picY;
         private Decimal _picScale;
+        private Effects _picEffect;
+        private enum Effects { NONE, GRAYSCALE, SEPIA }
 
         //Camera
-        private readonly CanonFrameworkManager _manager; 
+        private readonly CanonFrameworkManager _manager;
 
         //Fonts
         private string _fontFamilyName;
@@ -94,10 +97,30 @@ namespace ChromaClient
         private Int32 _positionYFont2;
         private Int32 _colorFont2;
         private string _aligmentFont2 = "Left";
-        private FontFamily[] fontFamilies;      
+        private FontFamily[] fontFamilies;
 
         private delegate void ThisDelegate(string pMessage);
-        
+
+        ColorMatrix sepiaMatrix = new ColorMatrix(
+        new float[][]
+        {
+            new float[]{.393f, .349f, .272f, 0, 0},
+            new float[]{.769f, .686f, .534f, 0, 0},
+            new float[]{.189f, .168f, .131f, 0, 0},
+            new float[]{0, 0, 0, 1, 0},
+            new float[]{0, 0, 0, 0, 1}
+        });
+
+        ColorMatrix grayscaleMatrix = new ColorMatrix(
+        new float[][]
+        {
+            new float[] {.3f, .3f, .3f, 0, 0},
+            new float[] {.59f, .59f, .59f, 0, 0},
+            new float[] {.11f, .11f, .11f, 0, 0},
+            new float[] {0, 0, 0, 1, 0},
+            new float[] {0, 0, 0, 0, 1}
+        });
+
         public MainForm()
         {
             InitializeComponent();
@@ -148,7 +171,7 @@ namespace ChromaClient
 
             this.configurationControl.Visible = false;
             this.saveConfigBtn.Visible = false;
-            this.processPanel.Visible = true;           
+            this.processPanel.Visible = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -196,6 +219,7 @@ namespace ChromaClient
             _picX = Int32.Parse(_settings.AppSettings.Settings["PicPositionX"].Value);
             _picY = Int32.Parse(_settings.AppSettings.Settings["PicPositionY"].Value);
             _picScale = Decimal.Parse(_settings.AppSettings.Settings["PicScale"].Value);
+            _picEffect = _settings.AppSettings.Settings["PicEffect"].Value == "Grayscale" ? Effects.GRAYSCALE : _settings.AppSettings.Settings["PicEffect"].Value == "Sepia" ? Effects.SEPIA : Effects.NONE;
 
             numericWidthPhoto.Value = _photoWidth;
             numericHeightPhoto.Value = _photoHeight;
@@ -216,7 +240,7 @@ namespace ChromaClient
                 {
                     string id = key.Substring(searchPattern.Length);
 
-                    string[] details = new string[] { id, _settings.AppSettings.Settings[key].Value, _settings.AppSettings.Settings["PicPositionY_" + id].Value, _settings.AppSettings.Settings["PicScale_" + id].Value };
+                    string[] details = new string[] { id, _settings.AppSettings.Settings[key].Value, _settings.AppSettings.Settings["PicPositionY_" + id].Value, _settings.AppSettings.Settings["PicScale_" + id].Value, _settings.AppSettings.Settings["PicEffect_" + id].Value };
                     ListViewItem itemToSave = new ListViewItem(details);
                     backgroundsList.Items.Add(itemToSave);
                 }
@@ -224,7 +248,7 @@ namespace ChromaClient
 
             //Fonts
             _fontFamilyName = _settings.AppSettings.Settings["FontFamilyName"].Value;
-            
+
             InstalledFontCollection installedFontCollection = new InstalledFontCollection();
             fontFamilies = installedFontCollection.Families;
             fontsComboBox.DataSource = fontFamilies;
@@ -329,7 +353,7 @@ namespace ChromaClient
             try
             {
                 switch (parameters.Length)
-                { 
+                {
                     case 1:
                         if (parameters[0] == "takephoto")
                         {
@@ -349,7 +373,7 @@ namespace ChromaClient
                         photoInfo = new PhotoInfo(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
                         break;
                 }
-                
+
             }
             catch (Exception _e)
             {
@@ -373,7 +397,7 @@ namespace ChromaClient
             }
         }
 
-        private void TakePhotoTCP( bool calibrating)
+        private void TakePhotoTCP(bool calibrating)
         {
             this.SafeCall(() =>
             {
@@ -384,7 +408,7 @@ namespace ChromaClient
                         camera.SavePicturesToHost(CAMERA_CALIBRATION);
                     else
                         camera.SavePicturesToHost(CAMERA_DUMP_PATH);
-                    
+
                     camera.TakePicture();
                 }
 
@@ -456,7 +480,7 @@ namespace ChromaClient
 
                 loadUserPicture(finalPath);
 
-                if(_finalImage != null)
+                if (_finalImage != null)
                     _finalImage.Dispose();
 
                 compositeImages();
@@ -482,7 +506,7 @@ namespace ChromaClient
 
             }
         }
-        
+
         private void compositeImages()
         {
             if (_backgroundImage == null)
@@ -507,26 +531,48 @@ namespace ChromaClient
             int currentPicX = _picX;
             int currentPicY = _picY;
             decimal currentScale = _picScale;
+            Effects currentEffect = _picEffect;
 
             if (_settings.AppSettings.Settings["PicPositionX_" + photoInfo.Id] != null)
                 currentPicX = Int32.Parse(_settings.AppSettings.Settings["PicPositionX_" + photoInfo.Id].Value);
-            
+
             if (_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id] != null)
                 currentPicY = Int32.Parse(_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id].Value);
+            string ef = _settings.AppSettings.Settings["PicEffect_" + photoInfo.Id].Value;
+            if (ef != null)
+                currentEffect = ef == "Grayscale" ? Effects.GRAYSCALE : ef == "Sepia" ? Effects.SEPIA : Effects.NONE;
 
-            if (_settings.AppSettings.Settings["PicScale_" + photoInfo.Id] != null)
-                currentScale = Decimal.Parse(_settings.AppSettings.Settings["PicScale_" + photoInfo.Id].Value);
-
-
-          /*  positionGraph.DrawImage((Bitmap)_cropUserBitmap.Clone(), new Rectangle(_picX, _picY, (int)(_cropUserBitmap.Width * _cropUserWidth * _picScale / 100), (int)(_cropUserBitmap.Height * _cropUserHeight * _picScale / 100)), new Rectangle((int)_cropUserX * _cropUserBitmap.Width / 100, (int)_cropUserY * _cropUserBitmap.Height / 100, (int)_cropUserWidth * _cropUserBitmap.Width / 100, (int)_cropUserHeight * _cropUserBitmap.Height / 100), GraphicsUnit.Pixel);
-            _chromagic.Chroma(_positionConfigBitmap);
-        */
             chromaGraph.DrawImage((Bitmap)_userImage, new Rectangle(currentPicX, currentPicY, (int)(_userImage.Width * _cropUserWidth * currentScale / 100), (int)(_userImage.Height * _cropUserHeight * currentScale / 100)), new Rectangle((int)_cropUserX * _userImage.Width / 100, (int)_cropUserY * _userImage.Height / 100, (int)_cropUserWidth * _userImage.Width / 100, (int)_cropUserHeight * _userImage.Height / 100), GraphicsUnit.Pixel);
+
+
             this.Invoke(new ThisDelegate(a =>
             {
                 debugLabel.Text = currentScale.ToString();
-            }),"");
+            }), "");
             _chromagic.Chroma(chroma);
+
+            if (currentEffect != Effects.NONE)
+            {
+                //create some image attributes
+                ImageAttributes attributes = new ImageAttributes();
+                if (currentEffect == Effects.GRAYSCALE)
+                {
+                    //set the color matrix attribute
+                    attributes.SetColorMatrix(grayscaleMatrix);
+                }
+                else
+                {
+                    //set the color matrix attribute
+                    attributes.SetColorMatrix(sepiaMatrix);
+                }
+                Bitmap newBitmap = new Bitmap(chroma.Width, chroma.Height);
+                Graphics g = Graphics.FromImage(newBitmap);
+                g.DrawImage(chroma, new Rectangle(0, 0, chroma.Width, chroma.Height),
+      0, 0, chroma.Width, chroma.Height, GraphicsUnit.Pixel, attributes);
+                g.Dispose();
+                chroma = newBitmap;
+
+            }
 
             finalGraph.DrawImage(chroma, new Rectangle(0, 0, _photoWidth, _photoHeight));
 
@@ -568,7 +614,7 @@ namespace ChromaClient
                         else
                             sf2.Alignment = StringAlignment.Near;
 
-                        Rectangle atpoint2 = new Rectangle(new Point(Int32.Parse(_settings.AppSettings.Settings["PositionXFont2"].Value), Int32.Parse(_settings.AppSettings.Settings["PositionYFont2"].Value)), new Size(_photoWidth, (int)float.Parse(_settings.AppSettings.Settings["FontSize2"].Value) + 20));                       
+                        Rectangle atpoint2 = new Rectangle(new Point(Int32.Parse(_settings.AppSettings.Settings["PositionXFont2"].Value), Int32.Parse(_settings.AppSettings.Settings["PositionYFont2"].Value)), new Size(_photoWidth, (int)float.Parse(_settings.AppSettings.Settings["FontSize2"].Value) + 20));
                         finalGraph.DrawString(photoInfo.Description2, font2, brush2, atpoint2, sf2);
                     }
 
@@ -585,18 +631,18 @@ namespace ChromaClient
             }
 
         }
-        
+
         private void Form1_FormClosed_1(object sender, FormClosedEventArgs e)
         {
             _manager.ReleaseFramework();
             _server.Close();
-            
+
             watcher.Created -= new FileSystemEventHandler(watcher_Created);
             watcher.Renamed -= new RenamedEventHandler(watcher_Renamed);
-            watcher.Dispose(); 
+            watcher.Dispose();
 
             Application.Exit();
-        } 
+        }
 
         //CROP
         private void openUserPictureBtn_Click(object sender, EventArgs e)
@@ -621,8 +667,8 @@ namespace ChromaClient
         }
 
         private void userCropPictureBox_MouseDown(object sender, MouseEventArgs e)
-        { 
-            _rectCrop = new Rectangle( e.X, e.Y, 0, 0);
+        {
+            _rectCrop = new Rectangle(e.X, e.Y, 0, 0);
             userCropPictureBox.Invalidate();
         }
 
@@ -675,7 +721,7 @@ namespace ChromaClient
         {
             if (userCropPictureBox.Image == null)
                 return;
-            
+
             Pen myPen = new Pen(System.Drawing.Color.Black, 2);
             Brush myBrush = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
             Rectangle myRectangle = new Rectangle(_rectCrop.X, _rectCrop.Y, _rectCrop.Width, _rectCrop.Height);
@@ -711,19 +757,19 @@ namespace ChromaClient
             _rectCrop.Height = (int)_cropUserHeight * userCropPictureBox.Height / 100;
             userCropPictureBox.Invalidate();
         }
-  
+
         //CHROMA
         private void applyChroma()
         {
             if (userCropPictureBox.Image == null)
                 return;
-            
+
             _chromagic.Hue = (float)_hue;
             _chromagic.Tolerance = (float)_tolerance;
             _chromagic.Saturation = (float)_saturation / 100.0f;
             _chromagic.MinValue = (float)_minValue / 100.0f;
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
-            
+
             _chromaConfigBitmap = new Bitmap(chromaPictureBox.Width, chromaPictureBox.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics chromaG = Graphics.FromImage(_chromaConfigBitmap);
 
@@ -783,7 +829,7 @@ namespace ChromaClient
                 return;
 
             if (_backgroundConfigBitmap == null)
-                return;   
+                return;
 
             _combinedConfigBitmap = new Bitmap(_photoWidth, _photoHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics combinedGraph = Graphics.FromImage(_combinedConfigBitmap);
@@ -801,7 +847,7 @@ namespace ChromaClient
             positionGraph.DrawImage((Bitmap)_cropUserBitmap.Clone(), new Rectangle(_picX, _picY, (int)(_cropUserBitmap.Width * _cropUserWidth * _picScale / 100), (int)(_cropUserBitmap.Height * _cropUserHeight * _picScale / 100)), new Rectangle((int)_cropUserX * _cropUserBitmap.Width / 100, (int)_cropUserY * _cropUserBitmap.Height / 100, (int)_cropUserWidth * _cropUserBitmap.Width / 100, (int)_cropUserHeight * _cropUserBitmap.Height / 100), GraphicsUnit.Pixel);
             _chromagic.Chroma(_positionConfigBitmap);
 
-            combinedGraph.DrawImage(_positionConfigBitmap, new Rectangle(0,0,_photoWidth, _photoHeight));
+            combinedGraph.DrawImage(_positionConfigBitmap, new Rectangle(0, 0, _photoWidth, _photoHeight));
 
             positionPictureBox.Image = _combinedConfigBitmap;
 
@@ -829,7 +875,7 @@ namespace ChromaClient
         }
 
         private void applyPositionBtn_Click(object sender, EventArgs e)
-        {            
+        {
             applyPosition();
         }
 
@@ -882,9 +928,9 @@ namespace ChromaClient
 
         private void selectColorFont1Btn_Click(object sender, EventArgs e)
         {
-            ColorDialog MyDialog = new ColorDialog();          
-            MyDialog.AllowFullOpen = true;     
-            MyDialog.ShowHelp = true;            
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = true;
+            MyDialog.ShowHelp = true;
             MyDialog.Color = textBoxColorFont1.BackColor;
             if (MyDialog.ShowDialog() == DialogResult.OK)
             {
@@ -985,13 +1031,13 @@ namespace ChromaClient
             applyFont();
         }
 
-      
+
 
         private void applyFont()
         {
             if (_combinedConfigBitmap == null)
                 return;
-            
+
             textoPictureBox.Image = (Bitmap)_combinedConfigBitmap.Clone();
             Graphics g = Graphics.FromImage(textoPictureBox.Image);
 
@@ -999,20 +1045,20 @@ namespace ChromaClient
             {
                 if (descriptionOneTxt.Text != "")
                 {
-                    Font font1 = new Font( _fontFamilyName, _fontSize1, FontStyle.Bold, GraphicsUnit.Pixel);
+                    Font font1 = new Font(_fontFamilyName, _fontSize1, FontStyle.Bold, GraphicsUnit.Pixel);
                     Color color = Color.FromArgb(_colorFont1);
                     SolidBrush brush = new SolidBrush(color);
                     StringFormat sf = new StringFormat();
 
-                    if(radioButtonCenter1.Checked)
+                    if (radioButtonCenter1.Checked)
                         sf.Alignment = StringAlignment.Center;
-                    else if(radioButtonRight1.Checked)
+                    else if (radioButtonRight1.Checked)
                         sf.Alignment = StringAlignment.Far;
                     else
                         sf.Alignment = StringAlignment.Near;
 
                     Rectangle atpoint1 = new Rectangle(new Point(_positionXFont1, _positionYFont1), new Size(_combinedConfigBitmap.Width, (int)_fontSize1 + 20));
-                    g.DrawString( descriptionOneTxt.Text, font1, brush, atpoint1, sf);
+                    g.DrawString(descriptionOneTxt.Text, font1, brush, atpoint1, sf);
                 }
 
                 if (descriptionTwoTxt.Text != "")
@@ -1038,11 +1084,11 @@ namespace ChromaClient
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-                      
+
         }
 
         private void savePictureBtn_Click(object sender, EventArgs e)
-        {       
+        {
             try
             {
                 SaveFileDialog save = new SaveFileDialog();
@@ -1066,6 +1112,7 @@ namespace ChromaClient
             numericPosXBackground.Value = _picX;
             numericPosYBackground.Value = _picY;
             numericScaleBackground.Value = (decimal)_picScale;
+            effectBackground.Text = (radioButtonNone.Checked) ? "None" : (radioButtonGrayscale.Checked) ? "Grayscale" : (radioButtonSepia.Checked) ? "Sepia" : "None";
             saveBackgroundIDBtn.Enabled = false;
             configurationControl.SelectedTab = backgroundTab;
 
@@ -1082,7 +1129,7 @@ namespace ChromaClient
         private void saveBackgroundIDBtn_Click(object sender, EventArgs e)
         {
             bool exist = false;
-            string[] details = new string[] { IDTextBox.Text, numericPosXBackground.Value.ToString(), numericPosYBackground.Value.ToString(), numericScaleBackground.Value.ToString() };
+            string[] details = new string[] { IDTextBox.Text, numericPosXBackground.Value.ToString(), numericPosYBackground.Value.ToString(), numericScaleBackground.Value.ToString(), effectBackground.Text };
             ListViewItem itemToSave = new ListViewItem(details);
 
             foreach (ListViewItem itemSaved in backgroundsList.Items)
@@ -1102,49 +1149,49 @@ namespace ChromaClient
                     else
                     {
                         // if 'No' do something here 
-                        
+
                     }
 
                 }
-                             
+
             }
 
             if (!exist)
             {
-                backgroundsList.Items.Add(itemToSave); 
+                backgroundsList.Items.Add(itemToSave);
             }
 
             IDTextBox.Text = "";
- 
+
         }
 
         private void removeItemBtn_Click(object sender, EventArgs e)
         {
-            foreach(ListViewItem item in backgroundsList.SelectedItems)
-             {
-                  backgroundsList.Items.Remove(item);
-             }
+            foreach (ListViewItem item in backgroundsList.SelectedItems)
+            {
+                backgroundsList.Items.Remove(item);
+            }
         }
 
         private void savePictureWithTextBtn_Click(object sender, EventArgs e)
-           {
-               try
-               {
-                   SaveFileDialog save = new SaveFileDialog();
-                   save.Filter = "Jpg(*Jpg)|*.jpg";
-                   save.AddExtension = true;
-                   if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                   {
-                       textoPictureBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                   }
-                   save.Dispose();
-               }
-               catch (Exception)
-               {
-                   throw new ApplicationException("Failed saving image");
-               }
-           }
-   
+        {
+            try
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "Jpg(*Jpg)|*.jpg";
+                save.AddExtension = true;
+                if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    textoPictureBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                save.Dispose();
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed saving image");
+            }
+        }
+
         private void backgroundsList_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (backgroundsList.SelectedItems.Count > 0)
@@ -1163,7 +1210,7 @@ namespace ChromaClient
 
             try
             {
-                FolderBrowserDialog browse= new FolderBrowserDialog();
+                FolderBrowserDialog browse = new FolderBrowserDialog();
                 if (browse.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     outputFolderText.Text = browse.SelectedPath;
@@ -1174,7 +1221,7 @@ namespace ChromaClient
             {
                 throw new ApplicationException("Failed browsing folder");
             }
-            
+
         }
 
         private void browseSourceBtn_Click(object sender, EventArgs e)
@@ -1232,9 +1279,9 @@ namespace ChromaClient
                 {
                     debugLabel.Text = a;
                 }), ex.Message);
-               /* 
-                if (this.InvokeRequired) this.Invoke(exceptionHandler, ex);
-                else exceptionHandler(ex);*/
+                /* 
+                 if (this.InvokeRequired) this.Invoke(exceptionHandler, ex);
+                 else exceptionHandler(ex);*/
             }
         }
 
@@ -1255,7 +1302,7 @@ namespace ChromaClient
                 {
                     camera.Shutdown += this.HandleCameraShutdown;
                     camera.PictureTaken += this.HandlePictureUpdate;
-                    
+
                     cameraCollectionComboBox.Items.Add(camera);
                 }
                 if (cameraCollectionComboBox.Items.Count > 0)
@@ -1289,7 +1336,7 @@ namespace ChromaClient
                     imageSizeTextInput.Text = camera.ImageQuality.PrimaryImageSize.ToString();
                     imageCompressTextInput.Text = camera.ImageQuality.PrimaryCompressLevel.ToString();
 
-                    takePictureBtn.Enabled = true;                   
+                    takePictureBtn.Enabled = true;
                 }
                 catch (EosException)
                 {
@@ -1321,7 +1368,7 @@ namespace ChromaClient
             {
                 return cameraCollectionComboBox.Items.Count > 0 && cameraCollectionComboBox.SelectedIndex >= 0
                 ? cameraCollectionComboBox.SelectedItem as EosCamera : null;
-            }));          
+            }));
         }
 
         private void UpdatePicture(Image image)
@@ -1377,10 +1424,11 @@ namespace ChromaClient
             string searchPattern1 = "PicPositionX_";
             string searchPattern2 = "PicPositionY_";
             string searchPattern3 = "PicScale_";
+            string searchPattern4 = "PicEffect_";
 
             foreach (string key in _settings.AppSettings.Settings.AllKeys)
             {
-                if (key.IndexOf(searchPattern1) == 0 || key.IndexOf(searchPattern2) == 0 || key.IndexOf(searchPattern3) == 0)
+                if (key.IndexOf(searchPattern1) == 0 || key.IndexOf(searchPattern2) == 0 || key.IndexOf(searchPattern3) == 0 || key.IndexOf(searchPattern4) == 0)
                 {
                     _settings.AppSettings.Settings.Remove(key);
                 }
@@ -1388,10 +1436,11 @@ namespace ChromaClient
 
             foreach (ListViewItem itemToSave in backgroundsList.Items)
             {
-               
+
                 _settings.AppSettings.Settings.Add("PicPositionX_" + itemToSave.SubItems[0].Text, itemToSave.SubItems[1].Text);
                 _settings.AppSettings.Settings.Add("PicPositionY_" + itemToSave.SubItems[0].Text, itemToSave.SubItems[2].Text);
                 _settings.AppSettings.Settings.Add("PicScale_" + itemToSave.SubItems[0].Text, itemToSave.SubItems[3].Text);
+                _settings.AppSettings.Settings.Add("PicEffect_" + itemToSave.SubItems[0].Text, itemToSave.SubItems[4].Text);
             }
 
             //General
@@ -1403,13 +1452,13 @@ namespace ChromaClient
                 CAMERA_DUMP_PATH = _settings.AppSettings.Settings["CameraSourcePath"].Value;
 
             watcher.Path = CAMERA_DUMP_PATH;
-         
+
             _settings.Save();
         }
 
-       
-        
-    
+
+
+
 
     }
 }

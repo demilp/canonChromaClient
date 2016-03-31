@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,6 +149,13 @@
             this.backgroundPicture = new System.Windows.Forms.PictureBox();
             this.debugLabel = new System.Windows.Forms.Label();
             this.processedPictureBox = new System.Windows.Forms.PictureBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.radioButtonNone = new System.Windows.Forms.RadioButton();
+            this.radioButtonGrayscale = new System.Windows.Forms.RadioButton();
+            this.radioButtonSepia = new System.Windows.Forms.RadioButton();
+            this.label34 = new System.Windows.Forms.Label();
+            this.effectBackground = new System.Windows.Forms.TextBox();
+            this.effectColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.configurationControl.SuspendLayout();
             this.cropUserTab.SuspendLayout();
@@ -198,6 +204,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -551,6 +558,7 @@
             // 
             // positionTab
             // 
+            this.positionTab.Controls.Add(this.groupBox8);
             this.positionTab.Controls.Add(this.saveBackgroundConfigBtn);
             this.positionTab.Controls.Add(this.groupBox4);
             this.positionTab.Controls.Add(this.groupBox3);
@@ -566,7 +574,7 @@
             // 
             // saveBackgroundConfigBtn
             // 
-            this.saveBackgroundConfigBtn.Location = new System.Drawing.Point(27, 336);
+            this.saveBackgroundConfigBtn.Location = new System.Drawing.Point(38, 405);
             this.saveBackgroundConfigBtn.Name = "saveBackgroundConfigBtn";
             this.saveBackgroundConfigBtn.Size = new System.Drawing.Size(159, 23);
             this.saveBackgroundConfigBtn.TabIndex = 5;
@@ -582,7 +590,7 @@
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.numericPositionY);
             this.groupBox4.Controls.Add(this.numericPositionX);
-            this.groupBox4.Location = new System.Drawing.Point(8, 172);
+            this.groupBox4.Location = new System.Drawing.Point(8, 161);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(200, 115);
             this.groupBox4.TabIndex = 4;
@@ -735,7 +743,7 @@
             // 
             // savePictureBtn
             // 
-            this.savePictureBtn.Location = new System.Drawing.Point(27, 300);
+            this.savePictureBtn.Location = new System.Drawing.Point(38, 369);
             this.savePictureBtn.Name = "savePictureBtn";
             this.savePictureBtn.Size = new System.Drawing.Size(159, 23);
             this.savePictureBtn.TabIndex = 3;
@@ -745,7 +753,7 @@
             // 
             // openBackgroundBtn
             // 
-            this.openBackgroundBtn.Location = new System.Drawing.Point(27, 138);
+            this.openBackgroundBtn.Location = new System.Drawing.Point(27, 133);
             this.openBackgroundBtn.Name = "openBackgroundBtn";
             this.openBackgroundBtn.Size = new System.Drawing.Size(159, 23);
             this.openBackgroundBtn.TabIndex = 3;
@@ -778,7 +786,7 @@
             // removeItemBtn
             // 
             this.removeItemBtn.Enabled = false;
-            this.removeItemBtn.Location = new System.Drawing.Point(363, 398);
+            this.removeItemBtn.Location = new System.Drawing.Point(363, 408);
             this.removeItemBtn.Name = "removeItemBtn";
             this.removeItemBtn.Size = new System.Drawing.Size(135, 23);
             this.removeItemBtn.TabIndex = 6;
@@ -788,7 +796,7 @@
             // 
             // saveBackgroundIDBtn
             // 
-            this.saveBackgroundIDBtn.Location = new System.Drawing.Point(363, 154);
+            this.saveBackgroundIDBtn.Location = new System.Drawing.Point(363, 182);
             this.saveBackgroundIDBtn.Name = "saveBackgroundIDBtn";
             this.saveBackgroundIDBtn.Size = new System.Drawing.Size(135, 23);
             this.saveBackgroundIDBtn.TabIndex = 6;
@@ -798,6 +806,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.effectBackground);
+            this.groupBox5.Controls.Add(this.label34);
             this.groupBox5.Controls.Add(this.IDTextBox);
             this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Controls.Add(this.label16);
@@ -808,7 +818,7 @@
             this.groupBox5.Controls.Add(this.numericPosXBackground);
             this.groupBox5.Location = new System.Drawing.Point(330, 15);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 129);
+            this.groupBox5.Size = new System.Drawing.Size(200, 161);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Position Values";
@@ -922,12 +932,13 @@
             this.idColumn,
             this.positionXColumn,
             this.positionYColumn,
-            this.scaleColumn});
+            this.scaleColumn,
+            this.effectColumn});
             this.backgroundsList.FullRowSelect = true;
             this.backgroundsList.GridLines = true;
-            this.backgroundsList.Location = new System.Drawing.Point(290, 198);
+            this.backgroundsList.Location = new System.Drawing.Point(290, 216);
             this.backgroundsList.Name = "backgroundsList";
-            this.backgroundsList.Size = new System.Drawing.Size(280, 187);
+            this.backgroundsList.Size = new System.Drawing.Size(340, 187);
             this.backgroundsList.TabIndex = 0;
             this.backgroundsList.UseCompatibleStateImageBehavior = false;
             this.backgroundsList.View = System.Windows.Forms.View.Details;
@@ -1566,6 +1577,71 @@
             this.processedPictureBox.TabIndex = 2;
             this.processedPictureBox.TabStop = false;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.radioButtonSepia);
+            this.groupBox8.Controls.Add(this.radioButtonGrayscale);
+            this.groupBox8.Controls.Add(this.radioButtonNone);
+            this.groupBox8.Location = new System.Drawing.Point(8, 282);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(200, 81);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Effects";
+            // 
+            // radioButtonNone
+            // 
+            this.radioButtonNone.AutoSize = true;
+            this.radioButtonNone.Checked = true;
+            this.radioButtonNone.Location = new System.Drawing.Point(30, 19);
+            this.radioButtonNone.Name = "radioButtonNone";
+            this.radioButtonNone.Size = new System.Drawing.Size(51, 17);
+            this.radioButtonNone.TabIndex = 0;
+            this.radioButtonNone.TabStop = true;
+            this.radioButtonNone.Text = "None";
+            this.radioButtonNone.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonGrayscale
+            // 
+            this.radioButtonGrayscale.AutoSize = true;
+            this.radioButtonGrayscale.Location = new System.Drawing.Point(30, 38);
+            this.radioButtonGrayscale.Name = "radioButtonGrayscale";
+            this.radioButtonGrayscale.Size = new System.Drawing.Size(72, 17);
+            this.radioButtonGrayscale.TabIndex = 1;
+            this.radioButtonGrayscale.Text = "Grayscale";
+            this.radioButtonGrayscale.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonSepia
+            // 
+            this.radioButtonSepia.AutoSize = true;
+            this.radioButtonSepia.Location = new System.Drawing.Point(30, 58);
+            this.radioButtonSepia.Name = "radioButtonSepia";
+            this.radioButtonSepia.Size = new System.Drawing.Size(52, 17);
+            this.radioButtonSepia.TabIndex = 2;
+            this.radioButtonSepia.Text = "Sepia";
+            this.radioButtonSepia.UseVisualStyleBackColor = true;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(35, 127);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(37, 13);
+            this.label34.TabIndex = 4;
+            this.label34.Text = "effect:";
+            // 
+            // effectBackground
+            // 
+            this.effectBackground.Location = new System.Drawing.Point(105, 127);
+            this.effectBackground.Name = "effectBackground";
+            this.effectBackground.Size = new System.Drawing.Size(81, 20);
+            this.effectBackground.TabIndex = 5;
+            // 
+            // effectColumn
+            // 
+            this.effectColumn.Text = "Effect";
+            this.effectColumn.Width = 97;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1575,7 +1651,6 @@
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.processPanel);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Chroma Client";
@@ -1640,6 +1715,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1768,6 +1845,13 @@
         private System.Windows.Forms.RadioButton radioButtonRight2;
         private System.Windows.Forms.RadioButton radioButtonCenter2;
         private System.Windows.Forms.RadioButton radioButtonLeft2;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton radioButtonSepia;
+        private System.Windows.Forms.RadioButton radioButtonGrayscale;
+        private System.Windows.Forms.RadioButton radioButtonNone;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox effectBackground;
+        private System.Windows.Forms.ColumnHeader effectColumn;
     }
 }
 
