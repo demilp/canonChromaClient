@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,10 @@
             this.numericTolerance = new System.Windows.Forms.NumericUpDown();
             this.numericHue = new System.Windows.Forms.NumericUpDown();
             this.positionTab = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.radioButtonSepia = new System.Windows.Forms.RadioButton();
+            this.radioButtonGrayscale = new System.Windows.Forms.RadioButton();
+            this.radioButtonNone = new System.Windows.Forms.RadioButton();
             this.saveBackgroundConfigBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -80,6 +85,8 @@
             this.removeItemBtn = new System.Windows.Forms.Button();
             this.saveBackgroundIDBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.effectBackground = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.IDTextBox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -93,6 +100,7 @@
             this.positionXColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.positionYColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.scaleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.effectColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textTab = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.radioButtonRight2 = new System.Windows.Forms.RadioButton();
@@ -149,13 +157,6 @@
             this.backgroundPicture = new System.Windows.Forms.PictureBox();
             this.debugLabel = new System.Windows.Forms.Label();
             this.processedPictureBox = new System.Windows.Forms.PictureBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.radioButtonNone = new System.Windows.Forms.RadioButton();
-            this.radioButtonGrayscale = new System.Windows.Forms.RadioButton();
-            this.radioButtonSepia = new System.Windows.Forms.RadioButton();
-            this.label34 = new System.Windows.Forms.Label();
-            this.effectBackground = new System.Windows.Forms.TextBox();
-            this.effectColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.configurationControl.SuspendLayout();
             this.cropUserTab.SuspendLayout();
@@ -174,6 +175,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericHue)).BeginInit();
             this.positionTab.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPositionY)).BeginInit();
@@ -204,7 +206,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -572,6 +573,50 @@
             this.positionTab.Text = "Position";
             this.positionTab.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.radioButtonSepia);
+            this.groupBox8.Controls.Add(this.radioButtonGrayscale);
+            this.groupBox8.Controls.Add(this.radioButtonNone);
+            this.groupBox8.Location = new System.Drawing.Point(8, 282);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(200, 81);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Effects";
+            // 
+            // radioButtonSepia
+            // 
+            this.radioButtonSepia.AutoSize = true;
+            this.radioButtonSepia.Location = new System.Drawing.Point(30, 58);
+            this.radioButtonSepia.Name = "radioButtonSepia";
+            this.radioButtonSepia.Size = new System.Drawing.Size(52, 17);
+            this.radioButtonSepia.TabIndex = 2;
+            this.radioButtonSepia.Text = "Sepia";
+            this.radioButtonSepia.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonGrayscale
+            // 
+            this.radioButtonGrayscale.AutoSize = true;
+            this.radioButtonGrayscale.Location = new System.Drawing.Point(30, 38);
+            this.radioButtonGrayscale.Name = "radioButtonGrayscale";
+            this.radioButtonGrayscale.Size = new System.Drawing.Size(72, 17);
+            this.radioButtonGrayscale.TabIndex = 1;
+            this.radioButtonGrayscale.Text = "Grayscale";
+            this.radioButtonGrayscale.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNone
+            // 
+            this.radioButtonNone.AutoSize = true;
+            this.radioButtonNone.Checked = true;
+            this.radioButtonNone.Location = new System.Drawing.Point(30, 19);
+            this.radioButtonNone.Name = "radioButtonNone";
+            this.radioButtonNone.Size = new System.Drawing.Size(51, 17);
+            this.radioButtonNone.TabIndex = 0;
+            this.radioButtonNone.TabStop = true;
+            this.radioButtonNone.Text = "None";
+            this.radioButtonNone.UseVisualStyleBackColor = true;
+            // 
             // saveBackgroundConfigBtn
             // 
             this.saveBackgroundConfigBtn.Location = new System.Drawing.Point(38, 405);
@@ -823,6 +868,22 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Position Values";
             // 
+            // effectBackground
+            // 
+            this.effectBackground.Location = new System.Drawing.Point(105, 127);
+            this.effectBackground.Name = "effectBackground";
+            this.effectBackground.Size = new System.Drawing.Size(81, 20);
+            this.effectBackground.TabIndex = 5;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(35, 127);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(37, 13);
+            this.label34.TabIndex = 4;
+            this.label34.Text = "effect:";
+            // 
             // IDTextBox
             // 
             this.IDTextBox.Location = new System.Drawing.Point(86, 23);
@@ -960,6 +1021,11 @@
             // scaleColumn
             // 
             this.scaleColumn.Text = "Scale";
+            // 
+            // effectColumn
+            // 
+            this.effectColumn.Text = "Effect";
+            this.effectColumn.Width = 97;
             // 
             // textTab
             // 
@@ -1577,71 +1643,6 @@
             this.processedPictureBox.TabIndex = 2;
             this.processedPictureBox.TabStop = false;
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.radioButtonSepia);
-            this.groupBox8.Controls.Add(this.radioButtonGrayscale);
-            this.groupBox8.Controls.Add(this.radioButtonNone);
-            this.groupBox8.Location = new System.Drawing.Point(8, 282);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(200, 81);
-            this.groupBox8.TabIndex = 2;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Effects";
-            // 
-            // radioButtonNone
-            // 
-            this.radioButtonNone.AutoSize = true;
-            this.radioButtonNone.Checked = true;
-            this.radioButtonNone.Location = new System.Drawing.Point(30, 19);
-            this.radioButtonNone.Name = "radioButtonNone";
-            this.radioButtonNone.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonNone.TabIndex = 0;
-            this.radioButtonNone.TabStop = true;
-            this.radioButtonNone.Text = "None";
-            this.radioButtonNone.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonGrayscale
-            // 
-            this.radioButtonGrayscale.AutoSize = true;
-            this.radioButtonGrayscale.Location = new System.Drawing.Point(30, 38);
-            this.radioButtonGrayscale.Name = "radioButtonGrayscale";
-            this.radioButtonGrayscale.Size = new System.Drawing.Size(72, 17);
-            this.radioButtonGrayscale.TabIndex = 1;
-            this.radioButtonGrayscale.Text = "Grayscale";
-            this.radioButtonGrayscale.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSepia
-            // 
-            this.radioButtonSepia.AutoSize = true;
-            this.radioButtonSepia.Location = new System.Drawing.Point(30, 58);
-            this.radioButtonSepia.Name = "radioButtonSepia";
-            this.radioButtonSepia.Size = new System.Drawing.Size(52, 17);
-            this.radioButtonSepia.TabIndex = 2;
-            this.radioButtonSepia.Text = "Sepia";
-            this.radioButtonSepia.UseVisualStyleBackColor = true;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(35, 127);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(37, 13);
-            this.label34.TabIndex = 4;
-            this.label34.Text = "effect:";
-            // 
-            // effectBackground
-            // 
-            this.effectBackground.Location = new System.Drawing.Point(105, 127);
-            this.effectBackground.Name = "effectBackground";
-            this.effectBackground.Size = new System.Drawing.Size(81, 20);
-            this.effectBackground.TabIndex = 5;
-            // 
-            // effectColumn
-            // 
-            this.effectColumn.Text = "Effect";
-            this.effectColumn.Width = 97;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1651,6 +1652,7 @@
             this.Controls.Add(this.saveConfigBtn);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.processPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Chroma Client";
@@ -1677,6 +1679,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericHue)).EndInit();
             this.positionTab.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).EndInit();
@@ -1715,8 +1719,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.userPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
