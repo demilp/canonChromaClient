@@ -526,7 +526,7 @@ namespace ChromaClient
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
 
             Bitmap chroma = new Bitmap(_photoWidth, _photoHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics chromaGraph = Graphics.FromImage(chroma);
+            
 
             int currentPicX = _picX;
             int currentPicY = _picY;
@@ -538,10 +538,12 @@ namespace ChromaClient
 
             if (_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id] != null)
                 currentPicY = Int32.Parse(_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id].Value);
-            string ef = _settings.AppSettings.Settings["PicEffect_" + photoInfo.Id].Value;
+            string ef = "";
+            if (_settings.AppSettings.Settings["PicEffect_" + photoInfo.Id] != null)
+                ef = _settings.AppSettings.Settings["PicEffect_" + photoInfo.Id].Value;
             if (ef != null)
                 currentEffect = ef == "Grayscale" ? Effects.GRAYSCALE : ef == "Sepia" ? Effects.SEPIA : Effects.NONE;
-
+            Graphics chromaGraph = Graphics.FromImage(chroma);
             chromaGraph.DrawImage((Bitmap)_userImage, new Rectangle(currentPicX, currentPicY, (int)(_userImage.Width * _cropUserWidth * currentScale / 100), (int)(_userImage.Height * _cropUserHeight * currentScale / 100)), new Rectangle((int)_cropUserX * _userImage.Width / 100, (int)_cropUserY * _userImage.Height / 100, (int)_cropUserWidth * _userImage.Width / 100, (int)_cropUserHeight * _userImage.Height / 100), GraphicsUnit.Pixel);
 
 
