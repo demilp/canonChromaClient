@@ -551,8 +551,10 @@ namespace ChromaClient
             {
                 debugLabel.Text = currentScale.ToString();
             }), "");
-            _chromagic.Chroma(chroma);
-
+            if (ConfigurationManager.AppSettings["Chroma"].ToLower()=="true")
+            {
+                _chromagic.Chroma(chroma);
+            }
             if (currentEffect != Effects.NONE)
             {
                 //create some image attributes
