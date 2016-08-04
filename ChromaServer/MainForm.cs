@@ -31,7 +31,8 @@ namespace ChromaClient
         Bitmap _foregroundImage; //Imagen de fondo
 
         Bitmap _finalImage; //Imagen con el chroma hecho
-        Chromagic.ChromaKey _chromagic;
+        //Chromagic.ChromaKey _chromagic;
+        demilp.ChromaKey chromagic;
         private Int32 _timeSleep;
 
         private FileSystemWatcher watcher;
@@ -65,11 +66,18 @@ namespace ChromaClient
         //Chroma Image Config
         private Bitmap _chromaConfigBitmap;
 
-        private Int32 _hue;
+        /*private Int32 _hue;
         private Int32 _tolerance;
         private Int32 _saturation;
         private Int32 _minValue;
         private Int32 _maxValue;
+        */
+        private Int32 hue;
+        private Int32 hueTolerance;
+        private Int32 saturation;
+        private Int32 saturationTolerance;
+        private Int32 value;
+        private Int32 valueTolerance;
 
         //Position
         private Bitmap _combinedConfigBitmap;
@@ -149,7 +157,8 @@ namespace ChromaClient
 
             _timeSleep = Int32.Parse(_settings.AppSettings.Settings["TimeWaitBeforePhotoProcess"].Value);
 
-            _chromagic = new Chromagic.ChromaKey();
+            //_chromagic = new Chromagic.ChromaKey();
+            chromagic = new demilp.ChromaKey();
 
             photoInfo = new PhotoInfo("test2", Application.StartupPath + @"\testMode\bgtest.jpg", Application.StartupPath + @"\testMode\fgtest.png", "description1", "description2");
 
@@ -195,23 +204,38 @@ namespace ChromaClient
             numericHeightCrop.Value = _cropUserHeight;
 
             //Chroma
-            _hue = Int32.Parse(_settings.AppSettings.Settings["ChromaHue"].Value);
+            /*_hue = Int32.Parse(_settings.AppSettings.Settings["ChromaHue"].Value);
             _tolerance = Int32.Parse(_settings.AppSettings.Settings["ChromaTolerance"].Value);
             _saturation = Int32.Parse(_settings.AppSettings.Settings["ChromaSaturation"].Value);
             _minValue = Int32.Parse(_settings.AppSettings.Settings["ChromaMinValue"].Value);
             _maxValue = Int32.Parse(_settings.AppSettings.Settings["ChromaMaxValue"].Value);
+            */
+            hue = Int32.Parse(_settings.AppSettings.Settings["ChromaHue"].Value);
+            hueTolerance = Int32.Parse(_settings.AppSettings.Settings["ChromaHueTolerance"].Value);
+            saturation = Int32.Parse(_settings.AppSettings.Settings["ChromaSaturation"].Value);
+            saturationTolerance = Int32.Parse(_settings.AppSettings.Settings["ChromaSaturationTolerance"].Value);
+            value = Int32.Parse(_settings.AppSettings.Settings["ChromaValue"].Value);
+            valueTolerance = Int32.Parse(_settings.AppSettings.Settings["ChromaValueTolerance"].Value);
 
-            _chromagic.Hue = (float)_hue;
+            /*_chromagic.Hue = (float)_hue;
             _chromagic.Tolerance = (float)_tolerance;
             _chromagic.Saturation = (float)_saturation / 100.0f;
             _chromagic.MinValue = (float)_minValue / 100.0f;
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
+            */
+            chromagic.Hue = hue;
+            chromagic.HueTolerance = hueTolerance;
+            chromagic.Saturation = saturation;
+            chromagic.SaturationTolerance = saturationTolerance;
+            chromagic.Value = value;
+            chromagic.ValueTolerance = valueTolerance;
 
-            numericHue.Value = _hue;
-            numericTolerance.Value = _tolerance;
-            numericSaturation.Value = _saturation;
-            numericMinValueChroma.Value = _minValue;
-            numericMaxValueChroma.Value = _maxValue;
+            numericHue.Value = hue;
+            numericTolerance.Value = hueTolerance;
+            numericSaturation.Value = saturation;
+            numericSaturationTolerance.Value = saturationTolerance;
+            numericValueChroma.Value = value;
+            numericValueToleranceChroma.Value = valueTolerance;
 
             //Position
             _photoWidth = Int32.Parse(_settings.AppSettings.Settings["PhotoWidth"].Value);
@@ -519,11 +543,19 @@ namespace ChromaClient
             Graphics finalGraph = Graphics.FromImage(_finalImage);
             finalGraph.DrawImage(_backgroundImage, new Rectangle(0, 0, _photoWidth, _photoHeight));
 
-            _chromagic.Hue = (float)_hue;
+            /*_chromagic.Hue = (float)_hue;
             _chromagic.Tolerance = (float)_tolerance;
             _chromagic.Saturation = (float)_saturation / 100.0f;
             _chromagic.MinValue = (float)_minValue / 100.0f;
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
+            */
+            chromagic.Hue = (float)hue;
+            chromagic.HueTolerance = (float)hueTolerance;
+            chromagic.Saturation = (float)saturation;
+            chromagic.SaturationTolerance = (float)saturationTolerance;
+            chromagic.Value = (float)value;
+            chromagic.ValueTolerance = (float)valueTolerance;
+
 
             Bitmap chroma = new Bitmap(_photoWidth, _photoHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             
@@ -553,7 +585,8 @@ namespace ChromaClient
             }), "");
             if (ConfigurationManager.AppSettings["Chroma"].ToLower()=="true")
             {
-                _chromagic.Chroma(chroma);
+                //_chromagic.Chroma(chroma);
+                chromagic.Chroma(chroma);
             }
             if (currentEffect != Effects.NONE)
             {
@@ -768,48 +801,64 @@ namespace ChromaClient
             if (userCropPictureBox.Image == null)
                 return;
 
-            _chromagic.Hue = (float)_hue;
+            /*_chromagic.Hue = (float)_hue;
             _chromagic.Tolerance = (float)_tolerance;
             _chromagic.Saturation = (float)_saturation / 100.0f;
             _chromagic.MinValue = (float)_minValue / 100.0f;
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
+            */
+            chromagic.Hue = (float)hue;
+            chromagic.HueTolerance = (float)hueTolerance;
+            chromagic.Saturation = (float)saturation;
+            chromagic.SaturationTolerance = (float)saturationTolerance;
+            chromagic.Value = (float)value;
+            chromagic.ValueTolerance = (float)valueTolerance;
 
             _chromaConfigBitmap = new Bitmap(chromaPictureBox.Width, chromaPictureBox.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics chromaG = Graphics.FromImage(_chromaConfigBitmap);
 
             chromaG.DrawImage((Bitmap)_cropUserBitmap.Clone(), new Rectangle(_rectCrop.X, _rectCrop.Y, _rectCrop.Width, _rectCrop.Height), new Rectangle((int)_cropUserX * _cropUserBitmap.Width / 100, (int)_cropUserY * _cropUserBitmap.Height / 100, (int)_cropUserWidth * _cropUserBitmap.Width / 100, (int)_cropUserHeight * _cropUserBitmap.Height / 100), GraphicsUnit.Pixel);
-            _chromagic.Chroma(_chromaConfigBitmap);
+            //_chromagic.Chroma(_chromaConfigBitmap);
+            chromagic.Chroma(_chromaConfigBitmap);
 
             chromaPictureBox.Image = _chromaConfigBitmap;
         }
 
         private void numericHue_ValueChanged(object sender, EventArgs e)
         {
-            _hue = (int)numericHue.Value;
+            //_hue = (int)numericHue.Value;
+            hue = (int)numericHue.Value;
             applyChroma();
         }
 
-        private void numericTolerance_ValueChanged(object sender, EventArgs e)
+        private void numericHueTolerance_ValueChanged(object sender, EventArgs e)
         {
-            _tolerance = (int)numericTolerance.Value;
+            //_tolerance = (int)numericTolerance.Value;
+            hueTolerance = (int)numericTolerance.Value;
             applyChroma();
         }
-
         private void numericSaturation_ValueChanged(object sender, EventArgs e)
         {
-            _saturation = (int)numericSaturation.Value;
+            //_saturation = (int)numericSaturation.Value;
+            saturation = (int)numericSaturation.Value;
+            applyChroma();
+        }
+        private void numericSaturationTolerance_ValueChanged(object sender, EventArgs e)
+        {
+            saturationTolerance = (int)numericSaturationTolerance.Value;
+            applyChroma();
+        }        
+        private void numericValueChroma_ValueChanged(object sender, EventArgs e)
+        {
+            //_minValue = (int)numericValueChroma.Value;
+            value = (int)numericValueChroma.Value;
             applyChroma();
         }
 
-        private void numericMinValueChroma_ValueChanged(object sender, EventArgs e)
+        private void numericValueToleranceChroma_ValueChanged(object sender, EventArgs e)
         {
-            _minValue = (int)numericMinValueChroma.Value;
-            applyChroma();
-        }
-
-        private void numericMaxValueChroma_ValueChanged(object sender, EventArgs e)
-        {
-            _maxValue = (int)numericMaxValueChroma.Value;
+            //_maxValue = (int)numericValueToleranceChroma.Value;
+            valueTolerance = (int)numericValueToleranceChroma.Value;
             applyChroma();
         }
 
@@ -839,17 +888,25 @@ namespace ChromaClient
             Graphics combinedGraph = Graphics.FromImage(_combinedConfigBitmap);
             combinedGraph.DrawImage(_backgroundConfigBitmap, new Rectangle(0, 0, _combinedConfigBitmap.Width, _combinedConfigBitmap.Height));
 
-            _chromagic.Hue = (float)_hue;
+            /*_chromagic.Hue = (float)_hue;
             _chromagic.Tolerance = (float)_tolerance;
             _chromagic.Saturation = (float)_saturation / 100.0f;
             _chromagic.MinValue = (float)_minValue / 100.0f;
             _chromagic.MaxValue = (float)_maxValue / 100.0f;
+            */
+            chromagic.Hue = (float)hue;
+            chromagic.HueTolerance = (float)hueTolerance;
+            chromagic.Saturation = (float)saturation;
+            chromagic.SaturationTolerance = (float)saturationTolerance;
+            chromagic.Value = (float)value;
+            chromagic.ValueTolerance = (float)valueTolerance;
 
             _positionConfigBitmap = new Bitmap(_photoWidth, _photoHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics positionGraph = Graphics.FromImage(_positionConfigBitmap);
 
             positionGraph.DrawImage((Bitmap)_cropUserBitmap.Clone(), new Rectangle(_picX, _picY, (int)(_cropUserBitmap.Width * _cropUserWidth * _picScale / 100), (int)(_cropUserBitmap.Height * _cropUserHeight * _picScale / 100)), new Rectangle((int)_cropUserX * _cropUserBitmap.Width / 100, (int)_cropUserY * _cropUserBitmap.Height / 100, (int)_cropUserWidth * _cropUserBitmap.Width / 100, (int)_cropUserHeight * _cropUserBitmap.Height / 100), GraphicsUnit.Pixel);
-            _chromagic.Chroma(_positionConfigBitmap);
+            //_chromagic.Chroma(_positionConfigBitmap);
+            chromagic.Chroma(_positionConfigBitmap);
 
             combinedGraph.DrawImage(_positionConfigBitmap, new Rectangle(0, 0, _photoWidth, _photoHeight));
 
@@ -1397,11 +1454,18 @@ namespace ChromaClient
             _settings.AppSettings.Settings["CropUserHeight"].Value = _cropUserHeight.ToString();
 
             //Chroma
-            _settings.AppSettings.Settings["ChromaHue"].Value = _hue.ToString();
+            /*_settings.AppSettings.Settings["ChromaHue"].Value = _hue.ToString();
             _settings.AppSettings.Settings["ChromaTolerance"].Value = _tolerance.ToString();
             _settings.AppSettings.Settings["ChromaSaturation"].Value = _saturation.ToString();
             _settings.AppSettings.Settings["ChromaMinValue"].Value = _minValue.ToString();
             _settings.AppSettings.Settings["ChromaMaxValue"].Value = _maxValue.ToString();
+            */
+            _settings.AppSettings.Settings["ChromaHue"].Value = hue.ToString();
+            _settings.AppSettings.Settings["ChromaHueTolerance"].Value = hueTolerance.ToString();
+            _settings.AppSettings.Settings["ChromaSaturation"].Value = saturation.ToString();
+            _settings.AppSettings.Settings["ChromaSaturationTolerance"].Value = saturationTolerance.ToString();
+            _settings.AppSettings.Settings["ChromaValue"].Value = value.ToString();
+            _settings.AppSettings.Settings["ChromaValueTolerance"].Value = valueTolerance.ToString();
 
             //Fonts
             _settings.AppSettings.Settings["FontFamilyName"].Value = _fontFamilyName;
@@ -1460,9 +1524,6 @@ namespace ChromaClient
             _settings.Save();
         }
 
-
-
-
-
+        
     }
 }

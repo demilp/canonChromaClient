@@ -50,13 +50,15 @@
             this.chromaTab = new System.Windows.Forms.TabPage();
             this.chromaPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.numericSaturationTolerance = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericMaxValueChroma = new System.Windows.Forms.NumericUpDown();
-            this.numericMinValueChroma = new System.Windows.Forms.NumericUpDown();
+            this.numericValueToleranceChroma = new System.Windows.Forms.NumericUpDown();
+            this.numericValueChroma = new System.Windows.Forms.NumericUpDown();
             this.numericSaturation = new System.Windows.Forms.NumericUpDown();
             this.numericTolerance = new System.Windows.Forms.NumericUpDown();
             this.numericHue = new System.Windows.Forms.NumericUpDown();
@@ -169,8 +171,9 @@
             this.chromaTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chromaPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericMaxValueChroma)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericMinValueChroma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSaturationTolerance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericValueToleranceChroma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericValueChroma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSaturation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericHue)).BeginInit();
@@ -406,54 +409,79 @@
             // 
             // chromaPictureBox
             // 
-            this.chromaPictureBox.Location = new System.Drawing.Point(214, 41);
+            this.chromaPictureBox.Location = new System.Drawing.Point(214, 5);
             this.chromaPictureBox.Name = "chromaPictureBox";
-            this.chromaPictureBox.Size = new System.Drawing.Size(640, 360);
+            this.chromaPictureBox.Size = new System.Drawing.Size(640, 426);
             this.chromaPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chromaPictureBox.TabIndex = 5;
             this.chromaPictureBox.TabStop = false;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label35);
+            this.groupBox2.Controls.Add(this.numericSaturationTolerance);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.numericMaxValueChroma);
-            this.groupBox2.Controls.Add(this.numericMinValueChroma);
+            this.groupBox2.Controls.Add(this.numericValueToleranceChroma);
+            this.groupBox2.Controls.Add(this.numericValueChroma);
             this.groupBox2.Controls.Add(this.numericSaturation);
             this.groupBox2.Controls.Add(this.numericTolerance);
             this.groupBox2.Controls.Add(this.numericHue);
-            this.groupBox2.Location = new System.Drawing.Point(8, 180);
+            this.groupBox2.Location = new System.Drawing.Point(8, 122);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 166);
+            this.groupBox2.Size = new System.Drawing.Size(200, 191);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chroma Values";
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(14, 109);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(109, 13);
+            this.label35.TabIndex = 3;
+            this.label35.Text = "Saturation Tolerance:";
+            // 
+            // numericSaturationTolerance
+            // 
+            this.numericSaturationTolerance.Location = new System.Drawing.Point(128, 105);
+            this.numericSaturationTolerance.Name = "numericSaturationTolerance";
+            this.numericSaturationTolerance.Size = new System.Drawing.Size(62, 20);
+            this.numericSaturationTolerance.TabIndex = 2;
+            this.numericSaturationTolerance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericSaturationTolerance.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericSaturationTolerance.ValueChanged += new System.EventHandler(this.numericSaturationTolerance_ValueChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 133);
+            this.label5.Location = new System.Drawing.Point(35, 161);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.Size = new System.Drawing.Size(88, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Max Value:";
+            this.label5.Text = "Value Tolerance:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 107);
+            this.label1.Location = new System.Drawing.Point(86, 135);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Min Value:";
+            this.label1.Text = "Value:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 81);
+            this.label2.Location = new System.Drawing.Point(65, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 1;
@@ -462,52 +490,53 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 55);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(42, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Tolerance:";
+            this.label3.Text = "Hue Tolerance:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 29);
+            this.label4.Location = new System.Drawing.Point(93, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Hue:";
             // 
-            // numericMaxValueChroma
+            // numericValueToleranceChroma
             // 
-            this.numericMaxValueChroma.Location = new System.Drawing.Point(105, 131);
-            this.numericMaxValueChroma.Name = "numericMaxValueChroma";
-            this.numericMaxValueChroma.Size = new System.Drawing.Size(62, 20);
-            this.numericMaxValueChroma.TabIndex = 0;
-            this.numericMaxValueChroma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericMaxValueChroma.Value = new decimal(new int[] {
-            95,
+            this.numericValueToleranceChroma.Location = new System.Drawing.Point(128, 157);
+            this.numericValueToleranceChroma.Name = "numericValueToleranceChroma";
+            this.numericValueToleranceChroma.Size = new System.Drawing.Size(62, 20);
+            this.numericValueToleranceChroma.TabIndex = 0;
+            this.numericValueToleranceChroma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericValueToleranceChroma.Value = new decimal(new int[] {
+            20,
             0,
             0,
             0});
-            this.numericMaxValueChroma.ValueChanged += new System.EventHandler(this.numericMaxValueChroma_ValueChanged);
+            this.numericValueToleranceChroma.ValueChanged += new System.EventHandler(this.numericValueToleranceChroma_ValueChanged);
             // 
-            // numericMinValueChroma
+            // numericValueChroma
             // 
-            this.numericMinValueChroma.Location = new System.Drawing.Point(105, 105);
-            this.numericMinValueChroma.Name = "numericMinValueChroma";
-            this.numericMinValueChroma.Size = new System.Drawing.Size(62, 20);
-            this.numericMinValueChroma.TabIndex = 0;
-            this.numericMinValueChroma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericMinValueChroma.Value = new decimal(new int[] {
+            this.numericValueChroma.Location = new System.Drawing.Point(128, 131);
+            this.numericValueChroma.Name = "numericValueChroma";
+            this.numericValueChroma.Size = new System.Drawing.Size(62, 20);
+            this.numericValueChroma.TabIndex = 0;
+            this.numericValueChroma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericValueChroma.Value = new decimal(new int[] {
             35,
             0,
             0,
             0});
-            this.numericMinValueChroma.ValueChanged += new System.EventHandler(this.numericMinValueChroma_ValueChanged);
+            this.numericValueChroma.ValueChanged += new System.EventHandler(this.numericValueChroma_ValueChanged);
             // 
             // numericSaturation
             // 
-            this.numericSaturation.Location = new System.Drawing.Point(105, 79);
+            this.numericSaturation.Location = new System.Drawing.Point(128, 79);
             this.numericSaturation.Name = "numericSaturation";
             this.numericSaturation.Size = new System.Drawing.Size(62, 20);
             this.numericSaturation.TabIndex = 0;
@@ -521,7 +550,7 @@
             // 
             // numericTolerance
             // 
-            this.numericTolerance.Location = new System.Drawing.Point(105, 53);
+            this.numericTolerance.Location = new System.Drawing.Point(128, 53);
             this.numericTolerance.Maximum = new decimal(new int[] {
             360,
             0,
@@ -536,11 +565,11 @@
             0,
             0,
             0});
-            this.numericTolerance.ValueChanged += new System.EventHandler(this.numericTolerance_ValueChanged);
+            this.numericTolerance.ValueChanged += new System.EventHandler(this.numericHueTolerance_ValueChanged);
             // 
             // numericHue
             // 
-            this.numericHue.Location = new System.Drawing.Point(105, 27);
+            this.numericHue.Location = new System.Drawing.Point(128, 27);
             this.numericHue.Maximum = new decimal(new int[] {
             360,
             0,
@@ -1673,8 +1702,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chromaPictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericMaxValueChroma)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericMinValueChroma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSaturationTolerance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericValueToleranceChroma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericValueChroma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSaturation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericHue)).EndInit();
@@ -1752,8 +1782,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericMaxValueChroma;
-        private System.Windows.Forms.NumericUpDown numericMinValueChroma;
+        private System.Windows.Forms.NumericUpDown numericValueToleranceChroma;
+        private System.Windows.Forms.NumericUpDown numericValueChroma;
         private System.Windows.Forms.NumericUpDown numericSaturation;
         private System.Windows.Forms.NumericUpDown numericTolerance;
         private System.Windows.Forms.NumericUpDown numericHue;
@@ -1854,6 +1884,8 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox effectBackground;
         private System.Windows.Forms.ColumnHeader effectColumn;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.NumericUpDown numericSaturationTolerance;
     }
 }
 
