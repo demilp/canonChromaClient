@@ -233,14 +233,14 @@
             // processingToolStripMenuItem
             // 
             this.processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            this.processingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.processingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.processingToolStripMenuItem.Text = "Processing";
             this.processingToolStripMenuItem.Click += new System.EventHandler(this.processingToolStripMenuItem_Click);
             // 
             // configurationToolStripMenuItem
             // 
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.configurationToolStripMenuItem.Text = "Configuration";
             this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
             // 
@@ -384,9 +384,9 @@
             // 
             // userCropPictureBox
             // 
-            this.userCropPictureBox.Location = new System.Drawing.Point(214, 41);
+            this.userCropPictureBox.Location = new System.Drawing.Point(214, 6);
             this.userCropPictureBox.Name = "userCropPictureBox";
-            this.userCropPictureBox.Size = new System.Drawing.Size(640, 360);
+            this.userCropPictureBox.Size = new System.Drawing.Size(640, 426);
             this.userCropPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userCropPictureBox.TabIndex = 0;
             this.userCropPictureBox.TabStop = false;
