@@ -233,14 +233,14 @@
             // processingToolStripMenuItem
             // 
             this.processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            this.processingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.processingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.processingToolStripMenuItem.Text = "Processing";
             this.processingToolStripMenuItem.Click += new System.EventHandler(this.processingToolStripMenuItem_Click);
             // 
             // configurationToolStripMenuItem
             // 
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.configurationToolStripMenuItem.Text = "Configuration";
             this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
             // 
@@ -837,9 +837,9 @@
             // 
             // positionPictureBox
             // 
-            this.positionPictureBox.Location = new System.Drawing.Point(214, 41);
+            this.positionPictureBox.Location = new System.Drawing.Point(214, 6);
             this.positionPictureBox.Name = "positionPictureBox";
-            this.positionPictureBox.Size = new System.Drawing.Size(640, 360);
+            this.positionPictureBox.Size = new System.Drawing.Size(640, 426);
             this.positionPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.positionPictureBox.TabIndex = 1;
             this.positionPictureBox.TabStop = false;
@@ -1447,9 +1447,9 @@
             // 
             // textoPictureBox
             // 
-            this.textoPictureBox.Location = new System.Drawing.Point(208, 67);
+            this.textoPictureBox.Location = new System.Drawing.Point(292, 66);
             this.textoPictureBox.Name = "textoPictureBox";
-            this.textoPictureBox.Size = new System.Drawing.Size(640, 360);
+            this.textoPictureBox.Size = new System.Drawing.Size(540, 360);
             this.textoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.textoPictureBox.TabIndex = 2;
             this.textoPictureBox.TabStop = false;
@@ -1667,7 +1667,7 @@
             // 
             this.processedPictureBox.Location = new System.Drawing.Point(218, 25);
             this.processedPictureBox.Name = "processedPictureBox";
-            this.processedPictureBox.Size = new System.Drawing.Size(640, 360);
+            this.processedPictureBox.Size = new System.Drawing.Size(640, 426);
             this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.processedPictureBox.TabIndex = 2;
             this.processedPictureBox.TabStop = false;
