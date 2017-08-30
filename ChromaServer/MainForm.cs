@@ -570,6 +570,8 @@ namespace ChromaClient
 
             if (_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id] != null)
                 currentPicY = Int32.Parse(_settings.AppSettings.Settings["PicPositionY_" + photoInfo.Id].Value);
+            if (_settings.AppSettings.Settings["PicScale_" + photoInfo.Id] != null)
+                currentScale = decimal.Parse(_settings.AppSettings.Settings["PicScale_" + photoInfo.Id].Value);
             string ef = "";
             if (_settings.AppSettings.Settings["PicEffect_" + photoInfo.Id] != null)
                 ef = _settings.AppSettings.Settings["PicEffect_" + photoInfo.Id].Value;
